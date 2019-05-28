@@ -1,216 +1,292 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:state_manage_app/animlearn.dart';
+import 'package:state_manage_app/canvaspaint.dart';
+import 'package:state_manage_app/fileoperate.dart';
+import 'package:state_manage_app/gesturedetector.dart';
+import 'package:state_manage_app/iohttplearn.dart';
+import 'package:state_manage_app/isolatelearn.dart';
+import 'package:state_manage_app/localelearn.dart';
+import 'package:state_manage_app/networklearn.dart';
+import 'package:state_manage_app/progressindicator.dart';
+import 'package:state_manage_app/simplesample.dart';
+import 'package:state_manage_app/statefulPage.dart';
+import 'package:state_manage_app/widgetlearn.dart';
+import 'package:state_manage_app/wightcontrol.dart';
 
-void main() => runApp(new MyApp());
-
-class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return new MaterialApp(
-      title: 'State Demo',
-      theme: new ThemeData(
-        primarySwatch: Colors.blue,
+void main() {
+  runApp(new MaterialApp(
+    title: "开始学习flutter",
+    theme: new ThemeData(
+      brightness: Brightness.dark,
+      primaryColor: Colors.lightBlueAccent,
+      accentColor: Colors.yellow[300],
+      canvasColor: Colors.pink[400],
+    ),
+    home: new Scaffold(
+      appBar: new AppBar(
+        leading: new IconButton(
+            icon: new Icon(Icons.menu), tooltip: "菜单", onPressed: null),
+        title: new Text("第一页"),
+        actions: <Widget>[
+          new IconButton(
+              icon: Icon(Icons.search), tooltip: "搜索", onPressed: null)
+        ],
       ),
-      home: new Scaffold(
-        appBar: new AppBar(
-          title: new Text("状态"),
-        ),
-        body: new Parent2Widget(),
+      body: new FirstPage(),
+      floatingActionButton: new FloatingActionButton(
+        onPressed: null,
+        tooltip: "增加",
+        child: new Icon(Icons.add),
       ),
-    );
-  }
-}
-
-class TapboxA extends StatefulWidget {
-  TapboxA({Key key}) : super(key: key);
-
-  @override
-  State<StatefulWidget> createState() {
-    return new _TapBoxAState();
-  }
-}
-
-class _TapBoxAState extends State<TapboxA> {
-  bool _active = false;
-
-  @override
-  Widget build(BuildContext context) {
-    return new GestureDetector(
-      onTap: _handleTap,
-      child: new Container(
-        child: new Center(
-          child: new Text(
-            _active ? 'Active' : 'Inactive',
-            style: new TextStyle(fontSize: 32.0, color: Colors.white),
+    ),
+    routes: <String, WidgetBuilder>{
+      "/rw": (BuildContext context) => new RandomWords(),
+      "/safr": (BuildContext context) => new Scaffold(
+            appBar: new AppBar(
+              title: new Text("有互动的页面"),
+            ),
+            body: new Counter(),
           ),
-        ),
-        height: 200.0,
-        width: 200.0,
-        decoration: BoxDecoration(
-            color: _active ? Colors.green[700] : Colors.grey[600]),
-      ),
-    );
-  }
-
-  void _handleTap() {
-    setState(() {
-      _active = !_active;
-    });
-  }
+      "/netlearn": (BuildContext context) => new NetWorkPage(),
+    },
+  ));
 }
 
-// ParentWidget 为 TapboxB 管理状态.
-
-//------------------------ ParentWidget --------------------------------
-
-class ParentWidget extends StatefulWidget {
-  @override
-  _ParentWidgetState createState() => new _ParentWidgetState();
-}
-
-class _ParentWidgetState extends State<ParentWidget> {
-  bool _active = false;
-
-  void _handleTapboxChanged(bool newValue) {
-    setState(() {
-      _active = newValue;
-    });
-  }
-
+class FirstPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return new Container(
-      child: new TapboxB(
-        active: _active,
-        onChanged: _handleTapboxChanged,
-      ),
-    );
-  }
-}
-
-//------------------------- TapboxB ----------------------------------
-
-class TapboxB extends StatelessWidget {
-  TapboxB({Key key, this.active: false, @required this.onChanged})
-      : super(key: key);
-
-  final bool active;
-  final ValueChanged<bool> onChanged;
-
-  void _handleTap() {
-    onChanged(!active);
-  }
-
-  Widget build(BuildContext context) {
-    return new GestureDetector(
-      onTap: _handleTap,
-      child: new Container(
-        child: new Center(
-          child: new Text(
-            active ? 'Active' : 'Inactive',
-            style: new TextStyle(fontSize: 32.0, color: Colors.white),
-          ),
+    // TODO: implement build
+    return new Center(
+        child: new Row(
+      children: <Widget>[
+        new Column(
+          children: <Widget>[
+            new RaisedButton(
+              onPressed: () {
+                /*Navigator.push(
+                  context,
+                  new MaterialPageRoute(
+                      builder: (context) => new RandomWords()));*/
+                Navigator.of(context).pushNamed("/rw");
+              },
+              child: new Text("跳转到有状态的页面"),
+            ),
+            new RaisedButton(
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    new MaterialPageRoute(
+                        builder: (context) => new Center(
+                              child: new Text(
+                                "hello flutter",
+                                textDirection: TextDirection.ltr,
+                              ),
+                            )));
+              },
+              child: new Text("跳转到Hello页面"),
+            ),
+            new RaisedButton(
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    new MaterialPageRoute(
+                        builder: (context) => new MaterialApp(
+                              title: "自定义的",
+                              home: new MyScaffold(),
+                            )));
+              },
+              child: new Text("自定义的标题和框架"),
+            ),
+            new MyButton(),
+            new RaisedButton(
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    new MaterialPageRoute(
+                        builder: (context) => new Scaffold(
+                              appBar: new AppBar(
+                                title: new Text("有互动的页面"),
+                              ),
+                              body: new Counter(),
+                            )));
+              },
+              child: new Text("互动有状态的页面"),
+            ),
+            new RaisedButton(
+              //需要认真看的案例==============================================================================
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    new MaterialPageRoute(
+                        builder: (context) => new ShoppingList(
+                              products: [
+                                new Product(name: 'Eggs'),
+                                new Product(name: 'Flour'),
+                                new Product(name: 'Chocolate chips'),
+                              ],
+                            )));
+              },
+              child: new Text("综合案例"),
+            ),
+            new RaisedButton(
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    new MaterialPageRoute(
+                        builder: (context) => new MaterialApp(
+                              title: "控制控件",
+                              theme: new ThemeData(primarySwatch: Colors.blue),
+                              home: new Controller(),
+                            )));
+              },
+              child: new Text("动态变化views，添加\n和删除wight的例子"),
+            ),
+            new RaisedButton(
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    new MaterialPageRoute(
+                        builder: (context) => new FadeAnimPage()));
+              },
+              child: new Text("淡入淡出动画"),
+            ),
+            new RaisedButton(
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    new MaterialPageRoute(
+                        builder: (context) => new CanvasPaint()));
+              },
+              child: new Text("画布画笔的例子"),
+            ),
+            new RaisedButton(
+              onPressed: () async {
+                Map<String, String> result = await Navigator.of(context)
+                    .pushNamed("/safr") as Map<String, String>;
+                print(result["result"]);
+              },
+              child: new Text("获取结果startActivityForResult"),
+            ),
+            new Expanded(
+                child: new Center(
+              child: new Text("hello flutter"),
+            ))
+          ],
         ),
-        width: 200.0,
-        height: 200.0,
-        decoration: new BoxDecoration(
-          color: active ? Colors.lightGreen[700] : Colors.grey[600],
+        new Column(
+          children: <Widget>[
+            new RaisedButton(
+              onPressed: () {
+                Navigator.of(context).pushNamed("/netlearn");
+              },
+              child: new Text("网络请求例子"),
+            ),
+            new RaisedButton(
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    new MaterialPageRoute(
+                        builder: (context) => new IsolateApp()));
+              },
+              child: new Text("isolate"),
+            ),
+            new RaisedButton(
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    new MaterialPageRoute(
+                        builder: (context) => new IndicatorApp()));
+              },
+              child: new Text("加载进度圈"),
+            ),
+            new RaisedButton(
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    new MaterialPageRoute(
+                        builder: (context) => new IndicatorApp()));
+              },
+              child: new Text("生命周期"),
+            ),
+            new RaisedButton(
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    new MaterialPageRoute(
+                        builder: (context) => new GestureDetectorLearn()));
+              },
+              child: new Text("手势例子"),
+            ),
+            new RaisedButton(
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    new MaterialPageRoute(
+                        builder: (context) => new HttpClientApp()));
+              },
+              child: new Text("io网络请求例子"),
+            ),
+            new RaisedButton(
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    new MaterialPageRoute(
+                        builder: (context) => new MaterialApp(
+                              title: "控制控件",
+                              theme: new ThemeData(primarySwatch: Colors.blue),
+                              home: new FilePage(),
+                            )));
+              },
+              child: new Text("文件读写"),
+            ),
+            new RaisedButton(
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    new MaterialPageRoute(
+                        builder: (context) => new MaterialApp(
+                              onGenerateTitle: (context) {
+                                return DemoLocalizations.of(context).taskTitle;
+                              },
+                              theme: new ThemeData(primarySwatch: Colors.blue),
+                              home: new LocaleLearn(),
+                              localizationsDelegates: [
+                                GlobalMaterialLocalizations.delegate,
+                                GlobalWidgetsLocalizations.delegate,
+                                DemoLocalizationsDelegate.delegate,
+                              ],
+                              supportedLocales: [
+                                const Locale('en', 'US'), // English
+                                const Locale('zh', 'CN'), // 中文
+                              ],
+                            )));
+              },
+              child: new Text("国际化"),
+            ),
+            new RaisedButton(
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    new MaterialPageRoute(
+                        builder: (context) => new MaterialApp(
+                              title: 'State Demo',
+                              theme: new ThemeData(
+                                primarySwatch: Colors.blue,
+                              ),
+                              home: new Scaffold(
+                                appBar: new AppBar(
+                                  title: new Text("状态"),
+                                ),
+                                body: new Parent2Widget(),
+                              ),
+                            )));
+              },
+              child: new Text("状态块"),
+            )
+          ],
         ),
-      ),
-    );
-  }
-}
-
-//---------------------------- ParentWidget ----------------------------
-
-class Parent2Widget extends StatefulWidget {
-  @override
-  _Parent2WidgetState createState() => new _Parent2WidgetState();
-}
-
-class _Parent2WidgetState extends State<Parent2Widget> {
-  bool _active = false;
-
-  void _handleTapboxChanged(bool newValue) {
-    setState(() {
-      _active = newValue;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return new Container(
-      child: new TapboxC(
-        active: _active,
-        onChanged: _handleTapboxChanged,
-      ),
-    );
-  }
-}
-
-//----------------------------- TapboxC ------------------------------
-
-class TapboxC extends StatefulWidget {
-  TapboxC({Key key, this.active: false, @required this.onChanged})
-      : super(key: key);
-
-  final bool active;
-  final ValueChanged<bool> onChanged;
-
-  _TapboxCState createState() => new _TapboxCState();
-}
-
-class _TapboxCState extends State<TapboxC> {
-  bool _highlight = false;
-
-  void _handleTapDown(TapDownDetails details) {
-    setState(() {
-      _highlight = true;
-    });
-  }
-
-  void _handleTapUp(TapUpDetails details) {
-    setState(() {
-      _highlight = false;
-    });
-  }
-
-  void _handleTapCancel() {
-    setState(() {
-      _highlight = false;
-    });
-  }
-
-  void _handleTap() {
-    widget.onChanged(!widget.active);
-  }
-
-  Widget build(BuildContext context) {
-    // This example adds a green border on tap down.
-    // On tap up, the square changes to the opposite state.
-    return new GestureDetector(
-      onTapDown: _handleTapDown, // Handle the tap events in the order that
-      onTapUp: _handleTapUp, // they occur: down, up, tap, cancel
-      onTap: _handleTap,
-      onTapCancel: _handleTapCancel,
-      child: new Container(
-        child: new Center(
-          child: new Text(widget.active ? 'Active' : 'Inactive',
-              style: new TextStyle(fontSize: 32.0, color: Colors.white)),
-        ),
-        width: 200.0,
-        height: 200.0,
-        decoration: new BoxDecoration(
-          color:
-          widget.active ? Colors.lightGreen[700] : Colors.grey[600],
-          border: _highlight
-              ? new Border.all(
-            color: Colors.teal[700],
-            width: 10.0,
-          )
-              : null,
-        ),
-      ),
-    );
+      ],
+    ));
   }
 }
