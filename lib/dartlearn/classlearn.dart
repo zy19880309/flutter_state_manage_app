@@ -29,7 +29,7 @@ main() {
   var dv = v1 - v2;
   print(dv.x);
 
-  print(checkVersion().toString());
+  print(checkVersion());
   var wf = new WannabeFunction();
   var str = wf("how","are","you");
   print(str);
