@@ -5,8 +5,10 @@ import 'package:state_manage_app/canvaspaint.dart';
 import 'package:state_manage_app/editlearn.dart';
 import 'package:state_manage_app/fileoperate.dart';
 import 'package:state_manage_app/gesturedetector.dart';
+import 'package:state_manage_app/imagelearn.dart';
 import 'package:state_manage_app/iohttplearn.dart';
 import 'package:state_manage_app/isolatelearn.dart';
+import 'package:state_manage_app/layoutdemo.dart';
 import 'package:state_manage_app/layoutlearn.dart';
 import 'package:state_manage_app/localelearn.dart';
 import 'package:state_manage_app/networklearn.dart';
@@ -289,6 +291,22 @@ class FirstPage extends StatelessWidget {
                     builder: (context) => new EditTextLearn()));
           },
           child: new Text("et验证"),
+        ),
+        new RaisedButton(
+          onPressed: () {
+            Navigator.push(
+                context,
+                new MaterialPageRoute(
+                    builder: (context) => new ImageCombineWidgets()));
+          },
+          child: new Text("综合布局"),
+        ),
+        new RaisedButton(
+          onPressed: () {
+            Navigator.push(context,
+                new MaterialPageRoute(builder: (context) => new LayoutDemo()));
+          },
+          child: new Text("布局例子"),
         ),
         new Center(
           child: new Text("hello flutter"),
