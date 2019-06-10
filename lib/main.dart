@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:state_manage_app/animlearn.dart';
 import 'package:state_manage_app/canvaspaint.dart';
+import 'package:state_manage_app/editlearn.dart';
 import 'package:state_manage_app/fileoperate.dart';
 import 'package:state_manage_app/gesturedetector.dart';
 import 'package:state_manage_app/iohttplearn.dart';
@@ -279,6 +280,15 @@ class FirstPage extends StatelessWidget {
                     builder: (context) => new LayoutsLearn()));
           },
           child: new Text("布局"),
+        ),
+        new RaisedButton(
+          onPressed: () {
+            Navigator.push(
+                context,
+                new MaterialPageRoute(
+                    builder: (context) => new EditTextLearn()));
+          },
+          child: new Text("et验证"),
         ),
         new Center(
           child: new Text("hello flutter"),
