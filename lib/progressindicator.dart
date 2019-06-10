@@ -72,6 +72,7 @@ class _IndicatorAppPageState extends State<IndicatorAppPage>
     // TODO: implement didChangeAppLifecycleState
     setState(() {
       _lastLifecycleState = state;
+      print("debuga====当前生命周期:$_lastLifecycleState");
     });
   }
 

@@ -100,7 +100,30 @@ void main(List<String> args) {
     value();
   }
 
+  var aa;
+  print(aa ?? "aa为空");
+  aa ??= "aa判空后的赋值";
+  print(aa ?? "aa为空");
 
+  ///模拟等待两秒，返回OK
+  request() async {
+    await Future.delayed(Duration(seconds: 3));
+    return "ok!";
+  }
+
+  ///得到"ok!"后，将"ok!"修改为"ok from request"
+  doSomeThing() async {
+    String data = await request();
+    data = "ok from request";
+    return data;
+  }
+
+  ///打印结果
+  doSomeThing().then((value) {
+    print(value);
+
+    ///输出ok from request
+  });
 }
 
 Function makeAdder(num addBy) {
