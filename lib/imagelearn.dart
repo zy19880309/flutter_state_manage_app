@@ -117,19 +117,20 @@ class ImageCombineWidgets extends StatelessWidget {
         body: new Center(
           child: new Container(
             padding: EdgeInsets.fromLTRB(0.0, 40.0, 0.0, 30.0),
-            height: 600.0,
+            height: 400.0,
+            width: 300.0,
             child: new Card(
               child: new Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   new Container(
-                    width: 440.0,
+                    width: 100.0,
                     child: leftColumn,
                   ),
                   new Image.asset(
                     "images/cake.jpg",
-                    height: 600.0,
-                    fit: BoxFit.cover,
+                    height: 150.0,
+                    fit: BoxFit.fitWidth,
                   ),
                 ],
               ),
