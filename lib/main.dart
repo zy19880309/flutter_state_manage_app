@@ -93,6 +93,61 @@ class FirstPage extends StatelessWidget {
                 context,
                 new MaterialPageRoute(
                     builder: (context) => new MaterialApp(
+                        title: "自定义的",
+                        theme: ThemeData.light(),
+                        home: new Scaffold(
+                          body: new Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            mainAxisSize: MainAxisSize.max,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: <Widget>[
+                              Padding(
+                                padding: EdgeInsets.all(20),
+                              ),
+                              Container(
+                                width: 200,
+                                height: 20,
+                                decoration: new BoxDecoration(
+                                    border: new Border.all(
+                                        color: Color(0xFFFF0000), width: 0.5),
+                                    color: Color(0xFF9E9E9E),
+                                    borderRadius: new BorderRadius.vertical(
+                                        top: Radius.elliptical(5, 10))),
+                              ),
+                              Padding(
+                                padding: EdgeInsets.all(20),
+                              ),
+                              Container(
+                                width: 200,
+                                height: 40,
+                                decoration: new BoxDecoration(
+                                    border: new Border.all(
+                                        color: Color(0xFFFF0000), width: 0.5),
+// 生成俩层阴影，一层绿，一层黄， 阴影位置由offset决定,阴影模糊层度由blurRadius大小决定（大就更透明更扩散），阴影模糊大小由spreadRadius决定
+                                    boxShadow: [
+                                      BoxShadow(
+                                          color: Color(0x99FFFF00),
+                                          offset: Offset(5.0, 5.0),
+                                          blurRadius: 10.0,
+                                          spreadRadius: 2.0),
+                                      BoxShadow(
+                                          color: Color(0x9900FF00),
+                                          offset: Offset(1.0, 1.0)),
+                                      BoxShadow(color: Color(0xFF0000FF))
+                                    ]),
+                              ),
+                            ],
+                          ),
+                        ))));
+          },
+          child: new Text("背景装饰学习"),
+        ),
+        new RaisedButton(
+          onPressed: () {
+            Navigator.push(
+                context,
+                new MaterialPageRoute(
+                    builder: (context) => new MaterialApp(
                           title: "自定义的",
                           home: new MyScaffold(),
                         )));
