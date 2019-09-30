@@ -15,6 +15,7 @@ import 'package:state_manage_app/networklearn.dart';
 import 'package:state_manage_app/progressindicator.dart';
 import 'package:state_manage_app/simplesample.dart';
 import 'package:state_manage_app/statefulPage.dart';
+import 'package:state_manage_app/tabpageview.dart';
 import 'package:state_manage_app/widgetlearn.dart';
 import 'package:state_manage_app/wightcontrol.dart';
 
@@ -362,6 +363,18 @@ class FirstPage extends StatelessWidget {
                 new MaterialPageRoute(builder: (context) => new LayoutDemo()));
           },
           child: new Text("布局例子"),
+        ),
+        new RaisedButton(
+          onPressed: () {
+            Navigator.push(
+                context,
+                new MaterialPageRoute(
+                    builder: (context) => MaterialApp(
+                          title: "tab学习",
+                          home: TabDemoPage(),
+                        )));
+          },
+          child: new Text("tab例子"),
         ),
         new Center(
           child: new Text("hello flutter"),

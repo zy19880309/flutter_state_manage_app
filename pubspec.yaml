@@ -33,7 +33,12 @@ dependencies:
   english_words: ^3.1.5
   #网络请求的库okhttp
   http: '>=0.11.3+12'
+  #网络请求的库dio
+#  dio: 3.0.2
   shared_preferences: ^0.4.2
+
+  #loading样式库
+  flutter_spinkit: "^4.0.0"
 
 
 
@@ -65,6 +70,7 @@ flutter:
     - images/cake.jpg
   #  - images/a_dot_burr.jpeg
   #  - images/a_dot_ham.jpeg
+
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.io/assets-and-images/#resolution-aware.

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart' as spin;
 
 class IndicatorApp extends StatelessWidget {
   @override
@@ -26,7 +27,7 @@ class IndicatorAppPage extends StatefulWidget {
 }
 
 class _IndicatorAppPageState extends State<IndicatorAppPage>
-    with WidgetsBindingObserver {
+    with WidgetsBindingObserver, TickerProviderStateMixin {
   bool _show = false;
 
   getBody() {
@@ -38,11 +39,41 @@ class _IndicatorAppPageState extends State<IndicatorAppPage>
   }
 
   getProgressDialog() {
-    return new Center(
-        child: new LinearProgressIndicator(
-      backgroundColor: Colors.amber,
-      value: 0.5,
-    ));
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: <Widget>[
+        new Center(
+            child: new LinearProgressIndicator(
+          backgroundColor: Colors.amber,
+          value: 0.5,
+        )),
+        spin.SpinKitRotatingCircle(
+          color: Colors.white,
+          size: 50.0,
+        ),
+        spin.SpinKitFadingCircle(
+          itemBuilder: (_, int index) {
+            return DecoratedBox(
+              decoration: BoxDecoration(
+                color: index.isEven ? Colors.red : Colors.green,
+              ),
+            );
+          },
+        ),
+        spin.SpinKitFadingCircle(
+          color: Colors.white,
+          size: 50.0,
+          controller: AnimationController(
+              vsync: this, duration: const Duration(milliseconds: 1200)),
+        ),
+        spin.SpinKitWave(
+          color: Colors.pink,
+          size: 50,
+          controller: AnimationController(
+              vsync: this, duration: const Duration(milliseconds: 2000)),
+        ),
+      ],
+    );
   }
 
   getTextView() {
