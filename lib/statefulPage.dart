@@ -1,6 +1,7 @@
+import 'dart:core';
+
 import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
-
 class RandomWords extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
@@ -14,20 +15,28 @@ class RandomWordsState extends State<RandomWords> {
   Widget build(BuildContext context) {
     // TODO: implement build
     final wordPair = new WordPair.random();
+
     return new Text(wordPair.asPascalCase);
   }
 }
 
 class Counter extends StatefulWidget {
+  Counter({Key key, @required this.text}) : super(key: key);
+
+  final String text;
+
   @override
   State<StatefulWidget> createState() {
     // TODO: implement createState
-    return new _CounterState();
+    return new _CounterState(text);
   }
 }
 
 class _CounterState extends State<Counter> {
   int _count = 0;
+  final String text;
+
+  _CounterState(this.text);
 
   _increment() {
     setState(() {
@@ -61,13 +70,13 @@ class _CounterState extends State<Counter> {
               Navigator.of(context).pop({"result": "返回的结果"});
             },
             child: new Text("带结果返回"),
-          )
+          ),
+          Text("带过来的参数：$text")
         ],
       ),
     );
   }
 }
-
 
 class TapBoxA extends StatefulWidget {
   TapBoxA({Key key}) : super(key: key);
@@ -237,8 +246,10 @@ class _TapBoxCState extends State<TapBoxC> {
     // This example adds a green border on tap down.
     // On tap up, the square changes to the opposite state.
     return new GestureDetector(
-      onTapDown: _handleTapDown, // Handle the tap events in the order that
-      onTapUp: _handleTapUp, // they occur: down, up, tap, cancel
+      onTapDown: _handleTapDown,
+      // Handle the tap events in the order that
+      onTapUp: _handleTapUp,
+      // they occur: down, up, tap, cancel
       onTap: _handleTap,
       onTapCancel: _handleTapCancel,
       child: new Container(
@@ -249,13 +260,12 @@ class _TapBoxCState extends State<TapBoxC> {
         width: 200.0,
         height: 200.0,
         decoration: new BoxDecoration(
-          color:
-          widget.active ? Colors.lightGreen[700] : Colors.grey[600],
+          color: widget.active ? Colors.lightGreen[700] : Colors.grey[600],
           border: _highlight
               ? new Border.all(
-            color: Colors.teal[700],
-            width: 10.0,
-          )
+                  color: Colors.teal[700],
+                  width: 10.0,
+                )
               : null,
         ),
       ),

@@ -19,6 +19,7 @@ import 'package:state_manage_app/tabpageview.dart';
 import 'package:state_manage_app/widgetlearn.dart';
 import 'package:state_manage_app/wightcontrol.dart';
 
+
 void main() {
   runApp(new MaterialApp(
     title: "开始学习flutter",
@@ -51,7 +52,9 @@ void main() {
             appBar: new AppBar(
               title: new Text("有互动的页面"),
             ),
-            body: new Counter(),
+            body: new Counter(
+              text: "呵呵",
+            ),
           ),
       "/netlearn": (BuildContext context) => new NetWorkPage(),
     },
@@ -222,7 +225,7 @@ class FirstPage extends StatelessWidget {
                 .pushNamed("/safr") as Map<String, String>;
             print(result["result"]);
           },
-          child: new Text("获取结果startActivityForResult"),
+          child: new Text("带参数过去获取结果startActivityForResult"),
         ),
         new RaisedButton(
           onPressed: () {
