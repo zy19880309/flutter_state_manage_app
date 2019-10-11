@@ -185,14 +185,26 @@ class FirstPage extends StatelessWidget {
           onPressed: () {
             Navigator.push(
                 context,
-                new MaterialPageRoute(
-                    builder: (context) => new ShoppingList(
-                          products: [
-                            new Product(name: 'Eggs'),
-                            new Product(name: 'Flour'),
-                            new Product(name: 'Chocolate chips'),
-                          ],
-                        )));
+                PageRouteBuilder(
+                  transitionDuration: Duration(milliseconds: 500),
+                  transitionsBuilder:
+                      (_, Animation<double> animation, __, Widget child) =>
+                          FadeTransition(
+                            opacity: animation,
+                            child: RotationTransition(
+                              child: child,
+                              turns: Tween<double>(begin: 0.0, end: 1.0)
+                                  .animate(animation),
+                            ),
+                          ),
+                  pageBuilder: (context, _, __) => new ShoppingList(
+                        products: [
+                          new Product(name: 'Eggs'),
+                          new Product(name: 'Flour'),
+                          new Product(name: 'Chocolate chips'),
+                        ],
+                      ),
+                ));
           },
           child: new Text("综合案例"),
         ),
