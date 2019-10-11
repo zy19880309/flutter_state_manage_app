@@ -2,6 +2,7 @@ import 'dart:core';
 
 import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
+
 class RandomWords extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
@@ -53,6 +54,7 @@ class _CounterState extends State<Counter> {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
+    var settingArg = ModalRoute.of(context).settings.arguments as String;
     return new Center(
       child: new Column(
         children: <Widget>[
@@ -71,7 +73,7 @@ class _CounterState extends State<Counter> {
             },
             child: new Text("带结果返回"),
           ),
-          Text("带过来的参数：$text")
+          Text("构造函数传的参数：$text；setting传的$settingArg")
         ],
       ),
     );

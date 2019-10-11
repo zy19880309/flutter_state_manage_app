@@ -19,7 +19,6 @@ import 'package:state_manage_app/tabpageview.dart';
 import 'package:state_manage_app/widgetlearn.dart';
 import 'package:state_manage_app/wightcontrol.dart';
 
-
 void main() {
   runApp(new MaterialApp(
     title: "开始学习flutter",
@@ -47,6 +46,7 @@ void main() {
       ),
     ),
     routes: <String, WidgetBuilder>{
+      //路由表，可以打开相应页面
       "/rw": (BuildContext context) => new RandomWords(),
       "/safr": (BuildContext context) => new Scaffold(
             appBar: new AppBar(
@@ -56,7 +56,14 @@ void main() {
               text: "呵呵",
             ),
           ),
-      "/netlearn": (BuildContext context) => new NetWorkPage(),
+    },
+    onGenerateRoute: (RouteSettings settings) {
+      //路由生成器，功能和路由表相同，但是可以做一些判断，比如登录状态，相当于面向切面
+      String name = settings.name;
+      if ("/netlearn" == name) {
+        WidgetBuilder builder = (BuildContext context) => NetWorkPage();
+        return MaterialPageRoute(builder: builder, settings: settings);
+      }
     },
   ));
 }
@@ -222,7 +229,7 @@ class FirstPage extends StatelessWidget {
         new RaisedButton(
           onPressed: () async {
             Map<String, String> result = await Navigator.of(context)
-                .pushNamed("/safr") as Map<String, String>;
+                .pushNamed("/safr", arguments: "arg哎呦") as Map<String, String>;
             print(result["result"]);
           },
           child: new Text("带参数过去获取结果startActivityForResult"),
