@@ -1,4 +1,7 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class MyAppBar extends StatelessWidget {
   final Widget title;
@@ -52,7 +55,10 @@ class MyButton extends StatelessWidget {
     // TODO: implement build
     return new GestureDetector(
       onTap: () {
-        print("轻点自定义按钮");
+        AssetImage("images/lake.jpg");
+        getAssetsJson().then((json) {
+          print(json);
+        });
       },
       child: new Container(
         height: 36.0,
@@ -67,4 +73,8 @@ class MyButton extends StatelessWidget {
       ),
     );
   }
+}
+
+Future<String> getAssetsJson() async {
+  return await rootBundle.loadString("assets/config.json");
 }
