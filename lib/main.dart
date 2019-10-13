@@ -13,6 +13,7 @@ import 'package:state_manage_app/layoutdemo.dart';
 import 'package:state_manage_app/layoutlearn.dart';
 import 'package:state_manage_app/localelearn.dart';
 import 'package:state_manage_app/networklearn.dart';
+import 'package:state_manage_app/officaldoclearn/docmain.dart';
 import 'package:state_manage_app/progressindicator.dart';
 import 'package:state_manage_app/simplesample.dart';
 import 'package:state_manage_app/statefulPage.dart';
@@ -61,16 +62,19 @@ void main() {
     onGenerateRoute: (RouteSettings settings) {
       //路由生成器，功能和路由表相同，但是可以做一些判断，比如登录状态，相当于面向切面
       String name = settings.name;
-      if ("/netlearn" == name) {
-        WidgetBuilder builder = (BuildContext context) => NetWorkPage();
-        return MaterialPageRoute(builder: builder, settings: settings);
+      switch (name) {
+        case "/netlearn":
+          WidgetBuilder builder = (BuildContext context) => NetWorkPage();
+          return MaterialPageRoute(builder: builder, settings: settings);
+        case "/doc":
+          WidgetBuilder builder = (BuildContext context) => DocNavigator();
+          return MaterialPageRoute(builder: builder, settings: settings);
+        default:
+          return null;
       }
     },
   ));
 }
-
-
-
 
 class FirstPage extends StatelessWidget {
   @override
@@ -79,6 +83,12 @@ class FirstPage extends StatelessWidget {
 
     return new ListView(
       children: <Widget>[
+        RaisedButton(
+          onPressed: () {
+            Navigator.of(context).pushNamed("/doc");
+          },
+          child: new Text("跳转到官网文档学习页"),
+        ),
         new RaisedButton(
           onPressed: () {
             /*Navigator.push(
@@ -195,20 +205,20 @@ class FirstPage extends StatelessWidget {
                   transitionsBuilder:
                       (_, Animation<double> animation, __, Widget child) =>
                           FadeTransition(
-                            opacity: animation,
-                            child: RotationTransition(
-                              child: child,
-                              turns: Tween<double>(begin: 0.0, end: 1.0)
-                                  .animate(animation),
-                            ),
-                          ),
+                    opacity: animation,
+                    child: RotationTransition(
+                      child: child,
+                      turns: Tween<double>(begin: 0.0, end: 1.0)
+                          .animate(animation),
+                    ),
+                  ),
                   pageBuilder: (context, _, __) => new ShoppingList(
-                        products: [
-                          new Product(name: 'Eggs'),
-                          new Product(name: 'Flour'),
-                          new Product(name: 'Chocolate chips'),
-                        ],
-                      ),
+                    products: [
+                      new Product(name: 'Eggs'),
+                      new Product(name: 'Flour'),
+                      new Product(name: 'Chocolate chips'),
+                    ],
+                  ),
                 ));
           },
           child: new Text("综合案例"),
