@@ -39,10 +39,49 @@ class WightLearn extends StatelessWidget {
               Text("关于"),
               Text("刘备"),
               Text(
-                "赵云",
-                style: TextStyle(
-                  fontFamily: "Raleway"
-                ),
+                "zhaoyun",
+                style: TextStyle(fontFamily: "Raleway"),
+              ),
+              FlatButton(
+                child: Text("flatbutton"),
+                onPressed: () {
+                  /*_AnimateState _state =
+                      context.ancestorStateOfType(TypeMatcher());
+                  _state.showSnackBar(SnackBar(
+                    content: Text("点击"),
+                    duration: Duration(seconds: 1),
+                  ));*/
+                  print("点击");
+                },
+              ),
+              OutlineButton(
+                child: Text("outlinebutton"),
+                onPressed: () {
+                  print("outline");
+                },
+              ),
+              IconButton(
+                icon: Icon(Icons.send),
+                onPressed: () {
+                  print('icon');
+                },
+              ),
+              OutlineButton.icon(
+                  onPressed: () {},
+                  icon: Icon(Icons.send),
+                  label: Text("outline发送，带图标的")),
+              FlatButton(
+                textColor: Colors.white,
+                color: Colors.blue,
+                highlightColor: Colors.blue[700],
+                colorBrightness: Brightness.dark,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20.0)),
+                splashColor: Colors.pink,
+                child: Text("flatbutton属性学习"),
+                onPressed: () {
+                  print('属性学习');
+                },
               )
             ],
           ),
