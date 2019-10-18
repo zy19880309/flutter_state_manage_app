@@ -144,6 +144,45 @@ class WightLearn extends StatelessWidget {
             ],
           ),
         ),
+        SelectWight()
+      ],
+    );
+  }
+}
+
+class SelectWight extends StatefulWidget {
+  @override
+  _SelectWightState createState() => _SelectWightState();
+}
+
+class _SelectWightState extends State<SelectWight> {
+  bool _switchState = true;
+  bool _checkState = true;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: <Widget>[
+        Switch(
+          value: _switchState,
+          onChanged: (value) {
+            setState(() {
+              _switchState = value;
+            });
+          },
+          activeColor: Colors.teal,
+        ),
+        Checkbox(
+          value: _checkState,
+          onChanged: (value) {
+            setState(() {
+              _checkState = value;
+            });
+          },
+          checkColor: Colors.red,
+          activeColor: Colors.green,
+        )
       ],
     );
   }
