@@ -49,14 +49,11 @@ class _DocNavigatorState extends State<DocNavigator> {
               Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (BuildContext context) => Scaffold(
-                            body: WightLearn(),
-                          )));
+                      builder: (BuildContext context) => MyApp().getApp()));
             },
           ),
         ],
       ),
     );
-    ;
   }
 }

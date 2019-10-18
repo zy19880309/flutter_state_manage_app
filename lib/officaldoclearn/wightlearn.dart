@@ -1,5 +1,25 @@
 import 'package:flutter/material.dart';
 
+class MyApp {
+  MaterialApp getApp() {
+    return MaterialApp(
+      title: "控件学习",
+      theme: ThemeData(
+          primaryColor: Colors.blue,
+          canvasColor: Colors.white,
+          accentColor: Colors.pink,
+          inputDecorationTheme: InputDecorationTheme(
+              labelStyle: TextStyle(color: Colors.grey), //定义label字体样式
+              hintStyle:
+                  TextStyle(color: Colors.grey, fontSize: 14.0) //定义提示文本样式
+              )),
+      home: Scaffold(
+        body: WightLearn(),
+      ),
+    );
+  }
+}
+
 class WightLearn extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -13,6 +33,7 @@ class WightLearn extends StatelessWidget {
     icons += " \uE90D";
     return ListView(
       children: <Widget>[
+        FormTestRoute(),
         Text(
           "align" * 10,
           textAlign: TextAlign.left,
@@ -144,8 +165,84 @@ class WightLearn extends StatelessWidget {
             ],
           ),
         ),
-        SelectWight()
+        SelectWight(),
       ],
+    );
+  }
+}
+
+class FormTestRoute extends StatefulWidget {
+  @override
+  _FormTestRouteState createState() => _FormTestRouteState();
+}
+
+class _FormTestRouteState extends State<FormTestRoute> {
+  TextEditingController _userController = TextEditingController();
+  TextEditingController _passwordController = TextEditingController();
+  GlobalKey _formKey = GlobalKey<FormState>();
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.symmetric(vertical: 16.0, horizontal: 24.0),
+      child: Form(
+        key: _formKey,
+        autovalidate: true,
+        child: Column(
+          children: <Widget>[
+            TextFormField(
+              autofocus: true,
+              controller: _userController,
+              decoration: InputDecoration(
+                labelText: "用户名",
+                hintText: "用户名或邮箱",
+                icon: Icon(Icons.person),
+              ),
+              validator: (value) {
+                return value.trim().length > 0 ? null : "用户名不能为空";
+              },
+            ),
+            TextFormField(
+                controller: _passwordController,
+                decoration: InputDecoration(
+                  labelText: "密码",
+                  hintText: "输入密码",
+                  icon: Icon(Icons.lock),
+                ),
+                obscureText: true,
+                validator: (value) {
+                  return value.trim().length > 5 ? null : "密码不能少于六位";
+                }),
+            // 登录按钮
+            Padding(
+              padding: const EdgeInsets.only(top: 28.0),
+              child: Row(
+                children: <Widget>[
+                  Expanded(
+                    child: RaisedButton(
+                      padding: EdgeInsets.all(15.0),
+                      child: Text("登录"),
+                      color: Theme.of(context).primaryColor,
+                      textColor: Colors.white,
+                      onPressed: () {
+                        //在这里不能通过此方式获取FormState，context不对
+                        //print(Form.of(context));
+
+                        // 通过_formKey.currentState 获取FormState后，
+                        // 调用validate()方法校验用户名密码是否合法，校验
+                        // 通过后再提交数据。
+                        if ((_formKey.currentState as FormState).validate()) {
+                          //验证通过提交数据
+                        }
+                      },
+                    ),
+                  ),
+                ],
+              ),
+            )
+          ],
+        ),
+      ),
     );
   }
 }
@@ -158,10 +255,30 @@ class SelectWight extends StatefulWidget {
 class _SelectWightState extends State<SelectWight> {
   bool _switchState = true;
   bool _checkState = true;
+  TextEditingController _controller = TextEditingController();
+
+  FocusNode fn1 = FocusNode();
+  FocusNode fn2 = FocusNode();
+
+  FocusScopeNode focusScopeNode;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller.addListener(() {
+      print(_controller.text);
+    });
+    _controller.text = "hello world";
+    _controller.selection =
+        TextSelection(baseOffset: 3, extentOffset: _controller.text.length);
+    fn1.addListener(() {
+      print(fn1.hasFocus); //监听焦点变化
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Row(
+    return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
         Switch(
@@ -182,6 +299,62 @@ class _SelectWightState extends State<SelectWight> {
           },
           checkColor: Colors.red,
           activeColor: Colors.green,
+        ),
+        TextField(
+          controller: _controller,
+          autofocus: true,
+          focusNode: fn1,
+          decoration: InputDecoration(
+              labelText: "用户名：",
+              hintText: "用户名或邮箱",
+              prefixIcon: Icon(
+                Icons.person,
+                color: Colors.lime,
+              )),
+          /*onChanged: (value) {
+            //这只是监听之一
+            print(_controller.text);
+          },*/
+        ),
+        Container(
+          child: TextField(
+            autofocus: false,
+            focusNode: fn2,
+            decoration: InputDecoration(
+              labelText: "密码：",
+              hintText: "输入密码",
+              border: InputBorder.none,
+              prefixIcon: Icon(
+                Icons.lock,
+                color: Colors.lime,
+              ),
+            ),
+          ),
+          decoration: BoxDecoration(
+              border: Border(
+                  bottom: BorderSide(
+            color: Colors.lightGreenAccent,
+            width: 5.0,
+          ))),
+        ),
+        OutlineButton(
+          child: Text("移动焦点"),
+          color: Colors.blue,
+          onPressed: () {
+//            FocusScope.of(context).requestFocus(fn2);//方法1
+            if (null == focusScopeNode) {
+              focusScopeNode = FocusScope.of(context);
+            }
+            focusScopeNode.requestFocus(fn2);
+          },
+        ),
+        OutlineButton(
+          child: Text("隐藏键盘"),
+          color: Colors.teal,
+          onPressed: () {
+            fn1.unfocus();
+            fn2.unfocus();
+          },
         )
       ],
     );
