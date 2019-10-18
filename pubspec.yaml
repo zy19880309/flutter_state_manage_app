@@ -69,6 +69,7 @@ flutter:
     - images/guide.png
     - images/lake.jpg
     - images/cake.jpg
+    - images/avatars.png
 
   fonts:
     - family: Raleway

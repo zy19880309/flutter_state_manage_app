@@ -4,6 +4,13 @@ class WightLearn extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var _tap;
+    String icons = "";
+// accessible: &#xE914; or 0xE914 or E914
+    icons += "\uE914";
+// error: &#xE000; or 0xE000 or E000
+    icons += " \uE000";
+// fingerprint: &#xE90D; or 0xE90D or E90D
+    icons += " \uE90D";
     return ListView(
       children: <Widget>[
         Text(
@@ -82,6 +89,57 @@ class WightLearn extends StatelessWidget {
                 onPressed: () {
                   print('属性学习');
                 },
+              ),
+              Image(
+                image: AssetImage("images/lake.jpg"),
+                width: 100,
+                height: 60,
+              ),
+              Image.asset(
+                "images/cake.jpg",
+                width: 100,
+              ),
+              Image(
+                image: NetworkImage(
+                    "https://avatars2.githubusercontent.com/u/20411648?s=460&v=4"),
+                width: 100,
+              ),
+              Image.network(
+                "https://avatars2.githubusercontent.com/u/20411648?s=460&v=4",
+                width: 100,
+              ),
+              Image.network(
+                "https://avatars2.githubusercontent.com/u/20411648?s=460&v=4",
+                width: 100,
+                height: 60,
+                fit: BoxFit.fitWidth,
+                color: Colors.blue,
+                colorBlendMode: BlendMode.difference,
+              ),
+              Text(
+                icons,
+                style: TextStyle(
+                  fontFamily: "MaterialIcons",
+                  fontSize: 24.0,
+                  color: Colors.green,
+                ),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Icon(
+                    Icons.accessible,
+                    color: Colors.green,
+                  ),
+                  Icon(
+                    Icons.error,
+                    color: Colors.green,
+                  ),
+                  Icon(
+                    Icons.fingerprint,
+                    color: Colors.green,
+                  ),
+                ],
               )
             ],
           ),
