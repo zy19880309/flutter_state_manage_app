@@ -1,5 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'dart:math' as math;
 
 class LayoutWidgetLearn extends StatefulWidget {
   @override
@@ -215,7 +216,105 @@ class _LayoutWidgetLearnState extends State<LayoutWidgetLearn> {
               ),
             ),
           ),
-        )
+        ),
+        Container(
+          color: Colors.black,
+          margin: EdgeInsets.only(top: 100),
+          child: Transform(
+            transform: Matrix4.skewY(0.3),
+            alignment: Alignment.topRight,
+            child: Container(
+              color: Colors.orange,
+              child: Text("变换变换变换变换变换变换变换"),
+              padding: EdgeInsets.all(8),
+            ),
+          ),
+        ),
+        DecoratedBox(
+          decoration: BoxDecoration(color: Colors.red),
+          //默认原点为左上角，左移20像素，向上平移5像素
+          child: Transform.translate(
+            offset: Offset(-20.0, -5.0),
+            child: Text("Hello world"),
+          ),
+        ),
+        Container(
+          width: double.infinity,
+          height: 100,
+          child: Center(
+            child: DecoratedBox(
+              decoration: BoxDecoration(color: Colors.red),
+              child: Transform.rotate(
+                //旋转90度
+                angle: math.pi / 2,
+                child: Text("Hello world"),
+              ),
+            ),
+          ),
+        ),
+        DecoratedBox(
+            decoration: BoxDecoration(color: Colors.red),
+            child: Transform.scale(
+                scale: 1.5, //放大到1.5倍
+                child: Text("Hello world"))),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            DecoratedBox(
+                decoration: BoxDecoration(color: Colors.red),
+                child: Transform.scale(scale: 1.5, child: Text("Hello world"))),
+            Text(
+              "你好",
+              style: TextStyle(color: Colors.green, fontSize: 18.0),
+            )
+          ],
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            DecoratedBox(
+              decoration: BoxDecoration(color: Colors.red),
+              //将Transform.rotate换成RotatedBox
+              child: RotatedBox(
+                quarterTurns: 1, //旋转90度(1/4圈)
+                child: Text("Hello world"),
+              ),
+            ),
+            Text(
+              "你好",
+              style: TextStyle(color: Colors.green, fontSize: 18.0),
+            )
+          ],
+        ),
+        Container(
+          margin: EdgeInsets.only(top: 50.0, left: 120.0,bottom: 100),
+          //容器外填充
+          constraints: BoxConstraints.tightFor(width: 200.0, height: 150.0),
+          //卡片大小
+          decoration: BoxDecoration(
+              //背景装饰
+              gradient: RadialGradient(
+                  //背景径向渐变
+                  colors: [Colors.red, Colors.orange],
+                  center: Alignment.topLeft,
+                  radius: .98),
+              boxShadow: [
+                //卡片阴影
+                BoxShadow(
+                    color: Colors.black54,
+                    offset: Offset(2.0, 2.0),
+                    blurRadius: 4.0)
+              ]),
+          transform: Matrix4.rotationZ(.2),
+          //卡片倾斜变换
+          alignment: Alignment.center,
+          //卡片内文字居中
+          child: Text(
+            //卡片文字
+            "5.20", style: TextStyle(color: Colors.white, fontSize: 40.0),
+          ),
+        ),
+
       ],
     );
   }

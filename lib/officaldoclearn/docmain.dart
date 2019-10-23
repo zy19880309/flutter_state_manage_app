@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:state_manage_app/officaldoclearn/scaffoldbottomlearn.dart';
+import 'package:state_manage_app/officaldoclearn/scaffoldlearn.dart';
 import 'package:state_manage_app/officaldoclearn/wightlearn.dart';
 
 class DocNavigator extends StatefulWidget {
@@ -50,6 +52,26 @@ class _DocNavigatorState extends State<DocNavigator> {
                   context,
                   MaterialPageRoute(
                       builder: (BuildContext context) => MyApp().getApp()));
+            },
+          ),
+          RaisedButton(
+            child: Text("scaffold学习"),
+            onPressed: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (BuildContext context) =>
+                          ScaffoldApp().getApp()));
+            },
+          ),
+          RaisedButton(
+            child: Text("scaffold底部导航栏学习"),
+            onPressed: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (BuildContext context) =>
+                          BottomNaviApp().getApp()));
             },
           ),
         ],
