@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:state_manage_app/officaldoclearn/layoutlearn.dart';
 
 class MyApp {
   MaterialApp getApp() {
@@ -166,6 +167,7 @@ class WightLearn extends StatelessWidget {
           ),
         ),
         SelectWight(),
+        LayoutWidgetLearn(),
       ],
     );
   }
