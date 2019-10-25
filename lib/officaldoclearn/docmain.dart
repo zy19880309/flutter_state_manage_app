@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
+import 'package:state_manage_app/officaldoclearn/asynclearn.dart';
 import 'package:state_manage_app/officaldoclearn/functionlearn.dart';
 import 'package:state_manage_app/officaldoclearn/scaffoldbottomlearn.dart';
 import 'package:state_manage_app/officaldoclearn/scaffoldlearn.dart';
@@ -89,6 +90,7 @@ class _DocNavigatorState extends State<DocNavigator> {
           addButton("滚动通知", ScrollNotificationTestRoute()),
           addButton("功能组件", WillPopScopeRoute()),
           addButton("主题学习", ThemeRoute()),
+          addButton("异步学习", AsyncRoute()),
         ],
       ),
     );
