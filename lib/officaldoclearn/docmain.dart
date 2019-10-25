@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
+import 'package:state_manage_app/officaldoclearn/functionlearn.dart';
 import 'package:state_manage_app/officaldoclearn/scaffoldbottomlearn.dart';
 import 'package:state_manage_app/officaldoclearn/scaffoldlearn.dart';
 import 'package:state_manage_app/officaldoclearn/wightlearn.dart';
@@ -85,6 +86,7 @@ class _DocNavigatorState extends State<DocNavigator> {
           addButton("gridview2", _getGridView2()),
           addButton("综合自定义", CustomScrollViewTestRoute()),
           addButton("滚动通知", ScrollNotificationTestRoute()),
+          addButton("功能组件", WillPopScopeRoute()),
         ],
       ),
     );
