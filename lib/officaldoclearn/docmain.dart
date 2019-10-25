@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:state_manage_app/officaldoclearn/functionlearn.dart';
 import 'package:state_manage_app/officaldoclearn/scaffoldbottomlearn.dart';
 import 'package:state_manage_app/officaldoclearn/scaffoldlearn.dart';
+import 'package:state_manage_app/officaldoclearn/themelearn.dart';
 import 'package:state_manage_app/officaldoclearn/wightlearn.dart';
 
 class DocNavigator extends StatefulWidget {
@@ -87,6 +88,7 @@ class _DocNavigatorState extends State<DocNavigator> {
           addButton("综合自定义", CustomScrollViewTestRoute()),
           addButton("滚动通知", ScrollNotificationTestRoute()),
           addButton("功能组件", WillPopScopeRoute()),
+          addButton("主题学习", ThemeRoute()),
         ],
       ),
     );
