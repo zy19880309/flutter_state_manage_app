@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
+import 'package:state_manage_app/officaldoclearn/actionslearn.dart';
 import 'package:state_manage_app/officaldoclearn/asynclearn.dart';
 import 'package:state_manage_app/officaldoclearn/dialoglearn.dart';
 import 'package:state_manage_app/officaldoclearn/functionlearn.dart';
@@ -95,6 +96,7 @@ class _DocNavigatorState extends State<DocNavigator> {
           addButton("异步学习", AsyncRoute()),
           addButton("dialog学习", DialogRoute()),
           addButton("有状态dialog学习", StatefulDialogRoute()),
+          addButton("事件处理", EventLearn()),
         ],
       ),
     );
