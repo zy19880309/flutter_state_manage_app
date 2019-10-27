@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class DialogRoute extends StatelessWidget {
@@ -27,6 +28,15 @@ class DialogRoute extends StatelessWidget {
             if (index != null) {
               print("点击了：$index");
             }
+          }),
+          addRaisedButton("加载dialog弹窗", () async {
+            showLoadingDialog(context);
+          }),
+          addRaisedButton("日期dialog弹窗", () async {
+            showDateDialog(context);
+          }),
+          addRaisedButton("ios日期dialog弹窗", () async {
+            showIOSDateDialog(context);
           }),
           addRaisedButton("customdialog弹窗", () async {
             bool delete = await showCustomDialog<bool>(
@@ -63,10 +73,71 @@ class DialogRoute extends StatelessWidget {
   }
 }
 
+Future<DateTime> showIOSDateDialog(BuildContext context) {
+  var date = DateTime.now();
+  return showCupertinoModalPopup(
+    context: context,
+    builder: (ctx) {
+      return SizedBox(
+        height: 200,
+        child: CupertinoDatePicker(
+          mode: CupertinoDatePickerMode.dateAndTime,
+          minimumDate: date,
+          maximumDate: date.add(
+            Duration(days: 30),
+          ),
+          maximumYear: date.year + 1,
+          onDateTimeChanged: (DateTime value) {
+            print(value);
+          },
+        ),
+      );
+    },
+  );
+}
+
+Future<DateTime> showDateDialog(BuildContext context) {
+  var date = DateTime.now();
+  return showDatePicker(
+      context: context,
+      initialDate: date,
+      firstDate: date,
+      lastDate: date.add(Duration(days: 30)));
+}
+
 RaisedButton addRaisedButton(String name, foo) {
   return RaisedButton(
     child: Text(name),
     onPressed: foo,
+  );
+}
+
+showLoadingDialog(BuildContext context) {
+  showDialog(
+    context: context,
+    barrierDismissible: false, //点击遮罩不关闭对话框
+    builder: (context) {
+      return UnconstrainedBox(
+        constrainedAxis: Axis.vertical,
+        child: SizedBox(
+          width: 280,
+          child: AlertDialog(
+            content: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                CircularProgressIndicator(
+                  value: .8,
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 26.0),
+                  child: Text("正在加载，请稍后..."),
+                )
+              ],
+            ),
+          ),
+        ),
+      );
+    },
   );
 }
 

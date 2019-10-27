@@ -22,6 +22,13 @@ class _StatefulDialogRouteState extends State<StatefulDialogRoute> {
             }
           },
         ),
+        RaisedButton(
+          child: Text("底部弹出dialog"),
+          onPressed: () async {
+            int index = await _showModalBottomSheet();
+            print("点击了$index");
+          },
+        ),
       ],
     );
   }
@@ -41,14 +48,17 @@ class _StatefulDialogRouteState extends State<StatefulDialogRoute> {
               Row(
                 children: <Widget>[
                   Text("同时删除子目录？"),
-                  Checkbox(
-                    value: withTree,
-                    onChanged: (bool value) {
-                      //复选框选中状态发生变化时重新构建UI
-                      setState(() {
-                        //更新复选框状态
-                        withTree = !withTree;
-                      });
+                  Builder(
+                    builder: (BuildContext context) {
+                      return Checkbox(
+                        value: withTree,
+                        onChanged: (bool value) {
+                          //复选框选中状态发生变化时重新构建UI
+                          //更新复选框状态
+                          (context as Element).markNeedsBuild();
+                          withTree = !withTree;
+                        },
+                      );
                     },
                   ),
                 ],
@@ -71,5 +81,23 @@ class _StatefulDialogRouteState extends State<StatefulDialogRoute> {
         );
       },
     );
+  }
+
+  Future<int> _showModalBottomSheet() {
+    return showModalBottomSheet(
+        context: context,
+        builder: (context) {
+          return ListView.builder(
+            itemCount: 30,
+            itemBuilder: (context, index) {
+              return ListTile(
+                title: Text("项目$index"),
+                onTap: () {
+                  Navigator.of(context).pop(index);
+                },
+              );
+            },
+          );
+        });
   }
 }
