@@ -10,3 +10,5 @@ build/
 /.idea/
 /.idea/libraries/
 
+pubspec.lock
+

@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-
-
 class CanvasPaint extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
