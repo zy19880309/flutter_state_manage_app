@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:state_manage_app/officaldoclearn/actionslearn.dart';
 import 'package:state_manage_app/officaldoclearn/asynclearn.dart';
 import 'package:state_manage_app/officaldoclearn/dialoglearn.dart';
+import 'package:state_manage_app/officaldoclearn/eventbuscustom/eventregister.dart';
 import 'package:state_manage_app/officaldoclearn/functionlearn.dart';
 import 'package:state_manage_app/officaldoclearn/scaffoldbottomlearn.dart';
 import 'package:state_manage_app/officaldoclearn/scaffoldlearn.dart';
@@ -97,6 +98,8 @@ class _DocNavigatorState extends State<DocNavigator> {
           addButton("dialog学习", DialogRoute()),
           addButton("有状态dialog学习", StatefulDialogRoute()),
           addButton("事件处理", EventLearn()),
+          addButton("事件总线", EventRegister()),
+
         ],
       ),
     );
