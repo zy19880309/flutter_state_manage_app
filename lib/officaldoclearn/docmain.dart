@@ -7,6 +7,7 @@ import 'package:state_manage_app/officaldoclearn/asynclearn.dart';
 import 'package:state_manage_app/officaldoclearn/dialoglearn.dart';
 import 'package:state_manage_app/officaldoclearn/eventbuscustom/eventregister.dart';
 import 'package:state_manage_app/officaldoclearn/functionlearn.dart';
+import 'package:state_manage_app/officaldoclearn/notificationlearn.dart';
 import 'package:state_manage_app/officaldoclearn/scaffoldbottomlearn.dart';
 import 'package:state_manage_app/officaldoclearn/scaffoldlearn.dart';
 import 'package:state_manage_app/officaldoclearn/statedialoglearn.dart';
@@ -99,6 +100,8 @@ class _DocNavigatorState extends State<DocNavigator> {
           addButton("有状态dialog学习", StatefulDialogRoute()),
           addButton("事件处理", EventLearn()),
           addButton("事件总线", EventRegister()),
+          addButton("通知", NotificationLearn()),
+          addButton("自定义通知", NotificationRoute()),
 
         ],
       ),
