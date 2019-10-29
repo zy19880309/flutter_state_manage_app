@@ -3,10 +3,14 @@ import 'dart:async';
 import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
 import 'package:state_manage_app/officaldoclearn/actionslearn.dart';
+import 'package:state_manage_app/officaldoclearn/animation/animationlearn.dart';
+import 'package:state_manage_app/officaldoclearn/animation/switchanimationlearn.dart';
 import 'package:state_manage_app/officaldoclearn/asynclearn.dart';
 import 'package:state_manage_app/officaldoclearn/dialoglearn.dart';
 import 'package:state_manage_app/officaldoclearn/eventbuscustom/eventregister.dart';
 import 'package:state_manage_app/officaldoclearn/functionlearn.dart';
+import 'package:state_manage_app/officaldoclearn/animation/heroanimationlearn.dart';
+import 'package:state_manage_app/officaldoclearn/animation/navianimationlearn.dart';
 import 'package:state_manage_app/officaldoclearn/notificationlearn.dart';
 import 'package:state_manage_app/officaldoclearn/scaffoldbottomlearn.dart';
 import 'package:state_manage_app/officaldoclearn/scaffoldlearn.dart';
@@ -102,7 +106,10 @@ class _DocNavigatorState extends State<DocNavigator> {
           addButton("事件总线", EventRegister()),
           addButton("通知", NotificationLearn()),
           addButton("自定义通知", NotificationRoute()),
-
+          addButton("动画", AnimationLearn()),
+          addAnimationNaviButton("切换动画", NaviAnimationLearn()),
+          addAnimationNaviButton("过渡动画", HeroAnimationRoute()),
+          addButton("通用切换动画", SwitchAnimationLearn()),
         ],
       ),
     );
@@ -149,6 +156,26 @@ class _DocNavigatorState extends State<DocNavigator> {
             context,
             MaterialPageRoute(
                 builder: (BuildContext context) => getNewApp(wight)));
+      },
+    );
+  }
+
+  RaisedButton addAnimationNaviButton(String name, wight) {
+    return RaisedButton(
+      child: Text(name),
+      onPressed: () {
+        Navigator.push(
+            context,
+            PageRouteBuilder(
+                transitionDuration: Duration(milliseconds: 500),
+                pageBuilder: (context, animation, secondAnimation) {
+                  return FadeTransition(
+                    opacity: animation,
+                    child: getNewApp(wight),
+                  );
+                }));
+        /*MaterialPageRoute(
+                builder: (BuildContext context) => getNewApp(wight))*/
       },
     );
   }
