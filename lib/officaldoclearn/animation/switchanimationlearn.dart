@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:state_manage_app/officaldoclearn/animation/animatonwidget.dart';
 
 class SwitchAnimationLearn extends StatefulWidget {
   @override
@@ -15,6 +16,8 @@ class _SwitchAnimationLearnState extends State<SwitchAnimationLearn> {
 
   @override
   Widget build(BuildContext context) {
+    Color _decorationColor = Colors.blue;
+    var duration = Duration(seconds: 1);
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -84,7 +87,22 @@ class _SwitchAnimationLearnState extends State<SwitchAnimationLearn> {
                 Icons.add,
                 color: Colors.orange,
               ),
-              label: Text("+1"))
+              label: Text("+1")),
+          AnimatedDecoratedBox1(
+            duration: duration,
+            decoration: BoxDecoration(color: _decorationColor),
+            child: FlatButton(
+              onPressed: () {
+                setState(() {
+                  _decorationColor = Colors.red;
+                });
+              },
+              child: Text(
+                "AnimatedDecoratedBox",
+                style: TextStyle(color: Colors.white),
+              ),
+            ),
+          )
         ],
       ),
     );

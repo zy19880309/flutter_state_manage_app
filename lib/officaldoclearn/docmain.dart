@@ -4,6 +4,7 @@ import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
 import 'package:state_manage_app/officaldoclearn/actionslearn.dart';
 import 'package:state_manage_app/officaldoclearn/animation/animationlearn.dart';
+import 'package:state_manage_app/officaldoclearn/animation/animatonwidget.dart';
 import 'package:state_manage_app/officaldoclearn/animation/switchanimationlearn.dart';
 import 'package:state_manage_app/officaldoclearn/asynclearn.dart';
 import 'package:state_manage_app/officaldoclearn/dialoglearn.dart';
@@ -110,6 +111,7 @@ class _DocNavigatorState extends State<DocNavigator> {
           addAnimationNaviButton("切换动画", NaviAnimationLearn()),
           addAnimationNaviButton("过渡动画", HeroAnimationRoute()),
           addButton("通用切换动画", SwitchAnimationLearn()),
+          addButton("属性动画", AnimationPropertyLearn()),
         ],
       ),
     );
