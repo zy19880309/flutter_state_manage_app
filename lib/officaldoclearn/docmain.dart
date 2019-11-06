@@ -7,6 +7,7 @@ import 'package:state_manage_app/officaldoclearn/animation/animationlearn.dart';
 import 'package:state_manage_app/officaldoclearn/animation/animatonwidget.dart';
 import 'package:state_manage_app/officaldoclearn/animation/switchanimationlearn.dart';
 import 'package:state_manage_app/officaldoclearn/asynclearn.dart';
+import 'package:state_manage_app/officaldoclearn/customwidget.dart';
 import 'package:state_manage_app/officaldoclearn/dialoglearn.dart';
 import 'package:state_manage_app/officaldoclearn/eventbuscustom/eventregister.dart';
 import 'package:state_manage_app/officaldoclearn/functionlearn.dart';
@@ -112,6 +113,7 @@ class _DocNavigatorState extends State<DocNavigator> {
           addAnimationNaviButton("过渡动画", HeroAnimationRoute()),
           addButton("通用切换动画", SwitchAnimationLearn()),
           addButton("属性动画", AnimationPropertyLearn()),
+          addButton("自定义组件", CustomLearn()),
         ],
       ),
     );
