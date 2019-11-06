@@ -7,7 +7,7 @@ import 'package:state_manage_app/officaldoclearn/animation/animationlearn.dart';
 import 'package:state_manage_app/officaldoclearn/animation/animatonwidget.dart';
 import 'package:state_manage_app/officaldoclearn/animation/switchanimationlearn.dart';
 import 'package:state_manage_app/officaldoclearn/asynclearn.dart';
-import 'package:state_manage_app/officaldoclearn/customwidget.dart';
+import 'package:state_manage_app/officaldoclearn/custom/customwidget.dart';
 import 'package:state_manage_app/officaldoclearn/dialoglearn.dart';
 import 'package:state_manage_app/officaldoclearn/eventbuscustom/eventregister.dart';
 import 'package:state_manage_app/officaldoclearn/functionlearn.dart';
