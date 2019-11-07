@@ -39,6 +39,10 @@ dependencies:
 
   #loading样式库
   flutter_spinkit: "^4.0.0"
+  dio: ^3.0.4
+
+  #扫描二维码使用
+#  barcode_scan: ^1.0.0
 
 
 
