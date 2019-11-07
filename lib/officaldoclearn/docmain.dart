@@ -116,6 +116,7 @@ class _DocNavigatorState extends State<DocNavigator> {
           addButton("属性动画", AnimationPropertyLearn()),
           addButton("自定义组件", CustomLearn()),
           addButton("dio学习", FutureBuilderRoute()),
+          addButton("sqlite学习", FutureBuilderRoute()),
         ],
       ),
     );
