@@ -48,17 +48,17 @@ class _SqfLiteState extends State<SqfLite> {
   }
 
   void _insertData() async {
-    var db = NoteDatabaseHelper();
+    var db = DatabaseHelper();
     Note todo = new Note(DateTime.now().millisecondsSinceEpoch, 'imarge', i, i,
         0.1 * i, 0.1 * i);
     i++;
     await db.saveNote(todo);
 
-    getNotes();
+//    getNotes();
   }
 
   void getNotes() async {
-    var db = NoteDatabaseHelper();
+    var db = DatabaseHelper();
     var res = await db.getAllNotes(limit: 2, offset: notes.length);
     setState(() {
       notes.addAll(res);
