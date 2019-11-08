@@ -87,4 +87,13 @@ class Note {
     this._pointLng = map['pointLng'];
     this._pointLat = map['pointLat'];
   }
+
+  Note.fromSql(Map<String, dynamic> map) {
+    this._publicationId = map['publicationId'];
+    this._pointID = map['pointid'];
+    this._image = map['image'];
+    this._contractId = map['contractId'];
+    this._pointLng = map['pointLng'];
+    this._pointLat = map['pointLat'];
+  }
 }

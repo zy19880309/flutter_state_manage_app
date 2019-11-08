@@ -57,23 +57,15 @@ class NoteDatabaseHelper {
     return result;
   }
 
-
-  Future<List> getAllNotes({int limit, int offset}) async{
+  Future<List> getAllNotes({int limit, int offset}) async {
     var dbClient = await db;
-
-  }
-
-  Future<List> selectVideos({int limit, int offset}) async {
-    var dbClient = await db;
-    var result = await dbClient.query(
-      tableVideo,
-      columns: [columnId, image, url, duration, title, favoriteStatus],
-      limit: limit,
-      offset: offset,
-    );
-    List<Video> videos = [];
-    result.forEach((item) => videos.add(Video.fromSql(item)));
-    return videos;
+    var result = await dbClient.query(tableNote,
+        columns: [columnId, pointID, image, contractId],
+        limit: limit,
+        offset: offset);
+    List<Note> notes = [];
+    result.forEach((item) => notes.add(Note.fromMap(item)));
+    return notes;
   }
 }
 

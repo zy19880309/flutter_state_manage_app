@@ -21,6 +21,8 @@ import 'package:state_manage_app/officaldoclearn/statedialoglearn.dart';
 import 'package:state_manage_app/officaldoclearn/themelearn.dart';
 import 'package:state_manage_app/officaldoclearn/wightlearn.dart';
 
+import 'db/dblearn.dart';
+
 class DocNavigator extends StatefulWidget {
   @override
   _DocNavigatorState createState() => _DocNavigatorState();
@@ -116,7 +118,7 @@ class _DocNavigatorState extends State<DocNavigator> {
           addButton("属性动画", AnimationPropertyLearn()),
           addButton("自定义组件", CustomLearn()),
           addButton("dio学习", FutureBuilderRoute()),
-          addButton("sqlite学习", FutureBuilderRoute()),
+          addButton("sqlite学习", SqfLite()),
         ],
       ),
     );
