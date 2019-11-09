@@ -17,6 +17,7 @@ import 'package:state_manage_app/officaldoclearn/httplearn/diolearn.dart';
 import 'package:state_manage_app/officaldoclearn/notificationlearn.dart';
 import 'package:state_manage_app/officaldoclearn/scaffoldbottomlearn.dart';
 import 'package:state_manage_app/officaldoclearn/scaffoldlearn.dart';
+import 'package:state_manage_app/officaldoclearn/scancode.dart';
 import 'package:state_manage_app/officaldoclearn/statedialoglearn.dart';
 import 'package:state_manage_app/officaldoclearn/themelearn.dart';
 import 'package:state_manage_app/officaldoclearn/wightlearn.dart';
@@ -119,6 +120,7 @@ class _DocNavigatorState extends State<DocNavigator> {
           addButton("自定义组件", CustomLearn()),
           addButton("dio学习", FutureBuilderRoute()),
           addButton("sqlite学习", SqfLite()),
+          addButton("扫二维码", ScanLearn()),
         ],
       ),
     );

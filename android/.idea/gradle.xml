@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="GradleSettings">
+    <option name="linkedExternalProjectsSettings">
+      <GradleProjectSettings>
+        <option name="distributionType" value="DEFAULT_WRAPPED" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="modules">
+          <set>
+            <option value="D:/ProgrammingSoftware/flutter/.pub-cache/hosted/pub.flutter-io.cn/path_provider-0.5.0+1/android" />
+            <option value="D:/ProgrammingSoftware/flutter/.pub-cache/hosted/pub.flutter-io.cn/qrscan-0.2.17/android" />
+            <option value="D:/ProgrammingSoftware/flutter/.pub-cache/hosted/pub.flutter-io.cn/shared_preferences-0.4.3/android" />
+            <option value="D:/ProgrammingSoftware/flutter/.pub-cache/hosted/pub.flutter-io.cn/sqflite-1.1.7+2/android" />
+            <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/app" />
+          </set>
+        </option>
+        <option name="resolveModulePerSourceSet" value="false" />
+        <option name="testRunner" value="PLATFORM" />
+      </GradleProjectSettings>
+    </option>
+  </component>
+</project>

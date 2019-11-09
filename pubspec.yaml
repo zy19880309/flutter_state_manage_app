@@ -42,6 +42,7 @@ dependencies:
   dio: ^3.0.4
 
   #扫描二维码使用
+  qrscan: ^0.2.10
 #  barcode_scan: ^1.0.0
 
   #数据库
@@ -77,6 +78,7 @@ flutter:
     - images/lake.jpg
     - images/cake.jpg
     - images/avatars.png
+    - images/scanner.png
 
   fonts:
     - family: Raleway
