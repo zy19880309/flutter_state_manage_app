@@ -83,6 +83,7 @@ class FirstPage extends StatefulWidget {
 
 class _FirstPageState extends State<FirstPage> {
   DateTime _lastTime;
+
   @override
   Widget build(BuildContext context) {
     //退出的监听只在首页有用
@@ -120,11 +121,11 @@ class _FirstPageState extends State<FirstPage> {
                   context,
                   new MaterialPageRoute(
                       builder: (context) => new Center(
-                        child: new Text(
-                          "hello flutter",
-                          textDirection: TextDirection.ltr,
-                        ),
-                      )));
+                            child: new Text(
+                              "hello flutter",
+                              textDirection: TextDirection.ltr,
+                            ),
+                          )));
             },
             child: new Text("跳转到Hello页面"),
           ),
@@ -189,9 +190,9 @@ class _FirstPageState extends State<FirstPage> {
                   context,
                   new MaterialPageRoute(
                       builder: (context) => new MaterialApp(
-                        title: "自定义的",
-                        home: new MyScaffold(),
-                      )));
+                            title: "自定义的",
+                            home: new MyScaffold(),
+                          )));
             },
             child: new Text("自定义的标题和框架"),
           ),
@@ -202,11 +203,11 @@ class _FirstPageState extends State<FirstPage> {
                   context,
                   new MaterialPageRoute(
                       builder: (context) => new Scaffold(
-                        appBar: new AppBar(
-                          title: new Text("有互动的页面"),
-                        ),
-                        body: new Counter(),
-                      )));
+                            appBar: new AppBar(
+                              title: new Text("有互动的页面"),
+                            ),
+                            body: new Counter(),
+                          )));
             },
             child: new Text("互动有状态的页面"),
           ),
@@ -219,14 +220,14 @@ class _FirstPageState extends State<FirstPage> {
                     transitionDuration: Duration(milliseconds: 500),
                     transitionsBuilder:
                         (_, Animation<double> animation, __, Widget child) =>
-                        FadeTransition(
-                          opacity: animation,
-                          child: RotationTransition(
-                            child: child,
-                            turns: Tween<double>(begin: 0.0, end: 1.0)
-                                .animate(animation),
-                          ),
-                        ),
+                            FadeTransition(
+                      opacity: animation,
+                      child: RotationTransition(
+                        child: child,
+                        turns: Tween<double>(begin: 0.0, end: 1.0)
+                            .animate(animation),
+                      ),
+                    ),
                     pageBuilder: (context, _, __) => new ShoppingList(
                       products: [
                         new Product(name: 'Eggs'),
@@ -244,10 +245,10 @@ class _FirstPageState extends State<FirstPage> {
                   context,
                   new MaterialPageRoute(
                       builder: (context) => new MaterialApp(
-                        title: "控制控件",
-                        theme: new ThemeData(primarySwatch: Colors.blue),
-                        home: new Controller(),
-                      )));
+                            title: "控制控件",
+                            theme: new ThemeData(primarySwatch: Colors.blue),
+                            home: new Controller(),
+                          )));
             },
             child: new Text("动态变化views，添加\n和删除wight的例子"),
           ),
@@ -263,15 +264,18 @@ class _FirstPageState extends State<FirstPage> {
           new RaisedButton(
             onPressed: () {
               //有点儿问题==============================================================================================
-              Navigator.push(context,
-                  new MaterialPageRoute(builder: (context) => new CanvasPaint()));
+              Navigator.push(
+                  context,
+                  new MaterialPageRoute(
+                      builder: (context) => new CanvasPaint()));
             },
             child: new Text("画布画笔的例子"),
           ),
           new RaisedButton(
             onPressed: () async {
               Map<String, String> result = await Navigator.of(context)
-                  .pushNamed("/safr", arguments: "arg哎呦") as Map<String, String>;
+                      .pushNamed("/safr", arguments: "arg哎呦")
+                  as Map<String, String>;
               print(result["result"]);
             },
             child: new Text("带参数过去获取结果startActivityForResult"),
@@ -284,8 +288,10 @@ class _FirstPageState extends State<FirstPage> {
           ),
           new RaisedButton(
             onPressed: () {
-              Navigator.push(context,
-                  new MaterialPageRoute(builder: (context) => new IsolateApp()));
+              Navigator.push(
+                  context,
+                  new MaterialPageRoute(
+                      builder: (context) => new IsolateApp()));
             },
             child: new Text("isolate"),
           ),
@@ -331,10 +337,10 @@ class _FirstPageState extends State<FirstPage> {
                   context,
                   new MaterialPageRoute(
                       builder: (context) => new MaterialApp(
-                        title: "控制控件",
-                        theme: new ThemeData(primarySwatch: Colors.blue),
-                        home: new FilePage(),
-                      )));
+                            title: "控制控件",
+                            theme: new ThemeData(primarySwatch: Colors.blue),
+                            home: new FilePage(),
+                          )));
             },
             child: new Text("文件读写"),
           ),
@@ -344,21 +350,21 @@ class _FirstPageState extends State<FirstPage> {
                   context,
                   new MaterialPageRoute(
                       builder: (context) => new MaterialApp(
-                        onGenerateTitle: (context) {
-                          return DemoLocalizations.of(context).taskTitle;
-                        },
-                        theme: new ThemeData(primarySwatch: Colors.blue),
-                        home: new LocaleLearn(),
-                        localizationsDelegates: [
-                          GlobalMaterialLocalizations.delegate,
-                          GlobalWidgetsLocalizations.delegate,
-                          DemoLocalizationsDelegate.delegate,
-                        ],
-                        supportedLocales: [
-                          const Locale('en', 'US'), // English
-                          const Locale('zh', 'CN'), // 中文
-                        ],
-                      )));
+                            onGenerateTitle: (context) {
+                              return DemoLocalizations.of(context).taskTitle;
+                            },
+                            theme: new ThemeData(primarySwatch: Colors.blue),
+                            home: new LocaleLearn(),
+                            localizationsDelegates: [
+                              GlobalMaterialLocalizations.delegate,
+                              GlobalWidgetsLocalizations.delegate,
+                              DemoLocalizationsDelegate.delegate,
+                            ],
+                            supportedLocales: [
+                              const Locale('en', 'US'), // English
+                              const Locale('zh', 'CN'), // 中文
+                            ],
+                          )));
             },
             child: new Text("国际化"),
           ),
@@ -368,17 +374,17 @@ class _FirstPageState extends State<FirstPage> {
                   context,
                   new MaterialPageRoute(
                       builder: (context) => new MaterialApp(
-                        title: 'State Demo',
-                        theme: new ThemeData(
-                          primarySwatch: Colors.blue,
-                        ),
-                        home: new Scaffold(
-                          appBar: new AppBar(
-                            title: new Text("状态"),
-                          ),
-                          body: new Parent2Widget(),
-                        ),
-                      )));
+                            title: 'State Demo',
+                            theme: new ThemeData(
+                              primarySwatch: Colors.blue,
+                            ),
+                            home: new Scaffold(
+                              appBar: new AppBar(
+                                title: new Text("状态"),
+                              ),
+                              body: new Parent2Widget(),
+                            ),
+                          )));
             },
             child: new Text("状态块"),
           ),
@@ -411,8 +417,10 @@ class _FirstPageState extends State<FirstPage> {
           ),
           new RaisedButton(
             onPressed: () {
-              Navigator.push(context,
-                  new MaterialPageRoute(builder: (context) => new LayoutDemo()));
+              Navigator.push(
+                  context,
+                  new MaterialPageRoute(
+                      builder: (context) => new LayoutDemo()));
             },
             child: new Text("布局例子"),
           ),
@@ -422,9 +430,9 @@ class _FirstPageState extends State<FirstPage> {
                   context,
                   new MaterialPageRoute(
                       builder: (context) => MaterialApp(
-                        title: "tab学习",
-                        home: TabDemoPage(),
-                      )));
+                            title: "tab学习",
+                            home: TabDemoPage(),
+                          )));
             },
             child: new Text("tab例子"),
           ),
@@ -433,7 +441,6 @@ class _FirstPageState extends State<FirstPage> {
           ),
         ],
       ),
-
     );
   }
 }
